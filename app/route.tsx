@@ -28,7 +28,8 @@ const Container = ({
   style,
   collection,
 }: {
-  collection;
+  collection: any;
+  style: any;
   children: any;
 }) => (
   <div
@@ -97,10 +98,11 @@ function Preview({ large, showToolbar, view, collection }: any) {
               style={{
                 display: "flex",
                 gap: 10,
-                padding: 10,
+                padding: 20,
                 flex: 1,
+                fontSize: 40,
                 background: "hsl(0, 0%, 20%)",
-                borderRadius: 4,
+                borderRadius: 20,
                 justifyContent: "center",
               }}
             >
@@ -201,19 +203,27 @@ function Preview({ large, showToolbar, view, collection }: any) {
       );
     case "stream":
       return (
-        <Container collection={collection} style={{ flexDirection: "column" }}>
+        <Container
+          collection={collection}
+          style={{ flexDirection: "column", gap: 20 }}
+        >
           {["Backlog", "Upcoming", "Completed", "Unscheduled"].map(
             (label: any) => (
-              <Chip
+              <div
                 key={label}
-                label={label}
                 style={{
                   background: "hsl(0, 0%, 20%)",
                   color: "hsl(0, 0%, 50%)",
                   fontWeight: 900,
                   flex: 1,
+                  borderRadius: 20,
+                  alignItems: "center",
+                  padding: 20,
+                  display: "flex",
                 }}
-              />
+              >
+                <span style={{ fontSize: 25 }}>{label}</span>
+              </div>
             )
           )}
         </Container>
@@ -274,25 +284,26 @@ function Preview({ large, showToolbar, view, collection }: any) {
       );
     case "workload":
       return (
-        <Container collection={collection}>
+        <Container collection={collection} style={{ gap: 20 }}>
           {[
-            [2, "Minimum effort"],
-            [4, "Little effort"],
-            [8, "Moderate effort"],
-            [16, "Significant effort"],
-            [32, "Maximum effort"],
+            [2, "Minimum Effort"],
+            [4, "Little Effort"],
+            [8, "Moderate Effort"],
+            [16, "Significant Effort"],
+            [32, "Maximum Effort"],
           ].map(([number, text]) => (
             <div
               key={text}
               style={{
-                gap: 2,
-                p: 1.5,
+                gap: 15,
+                padding: 20,
+                paddingTop: 30,
+                fontWeight: 200,
                 flex: 1,
                 background: "hsl(0, 0%, 20%)",
-                borderRadius: 4,
+                borderRadius: 20,
                 whiteSpace: "nowrap",
-                textOrientation: "mixed",
-                writingMode: "vertical-rl",
+                flexDirection: "column",
                 display: "flex",
                 alignItems: "center",
                 overflow: "hidden",
@@ -300,31 +311,28 @@ function Preview({ large, showToolbar, view, collection }: any) {
             >
               <div
                 style={{
-                  width: 30,
-                  height: 30,
-                  minWidth: 30,
-                  minHeight: 30,
-                  transform: "rotate(-90deg)",
+                  width: 90,
+                  height: 90,
                   borderRadius: 99,
+                  fontSize: 40,
                   background: "hsl(0, 0%, 25%)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <h1 style={{ fontWeight: 900 }}>{number}</h1>
+                <span style={{ fontWeight: 900 }}>{number}</span>
               </div>
-              <h1
+              <span
                 style={{
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                  fontSize: !large ? 13 : { xs: 13, sm: 15 },
+                  whiteSpace: "wrap",
+                  textAlign: "center",
+                  fontSize: 40,
                 }}
                 fontWeight={700}
               >
                 {text}
-              </h1>
+              </span>
             </div>
           ))}
         </Container>
@@ -471,9 +479,9 @@ function Preview({ large, showToolbar, view, collection }: any) {
         <Container
           collection={collection}
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(7, 1fr)",
-            gridAutoRows: "1fr",
+            display: "flex",
+            gap: 10,
+            flexWrap: "wrap",
           }}
         >
           {new Array(7).fill(0).map((_, i) => (
@@ -482,6 +490,7 @@ function Preview({ large, showToolbar, view, collection }: any) {
               style={{
                 display: "flex",
                 gap: 10,
+                width: 157,
                 padding: 10,
                 background: "hsl(0, 0%, 23%)",
                 borderRadius: 4,
@@ -497,6 +506,8 @@ function Preview({ large, showToolbar, view, collection }: any) {
               style={{
                 display: "flex",
                 gap: 10,
+                width: 157,
+                height: 82.5,
                 padding: 10,
                 background: "hsl(0, 0%, 20%)",
                 borderRadius: 4,
