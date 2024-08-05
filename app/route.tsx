@@ -329,7 +329,6 @@ function Preview({ large, showToolbar, view, collection }: any) {
                   textAlign: "center",
                   fontSize: 40,
                 }}
-                fontWeight={700}
               >
                 {text}
               </span>
@@ -346,7 +345,6 @@ function Preview({ large, showToolbar, view, collection }: any) {
           {labels.map((label: any) => (
             <div
               key={label.name}
-              label={label.name}
               style={{
                 justifyContent: "flex-start",
                 paddingLeft: 20,
