@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "vercel deploy --prod"
   },
   "dependencies": {
     "@vercel/og": "^0.6.2",
@@ -25,3 +26,4 @@
     "typescript": "^5"
   }
 }
+
