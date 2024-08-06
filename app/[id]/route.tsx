@@ -39,15 +39,14 @@ const Container = ({
   <div
     style={{
       padding: 40,
-      borderRadius: 20,
-      color: "hsl(0, 0%, 50%)",
+      borderRadius: 30,
+      color: isLight ? "hsl(0, 0%, 40%)" : "hsl(0, 0%, 50%)",
       fontFamily: "'Jost'",
-      background: "hsl(0, 0%, 17%)",
+      background: isLight ? "hsl(0, 0%, 90%)" : "hsl(0, 0%, 17%)",
       width: "100%",
       height: "100%",
       display: "flex",
       flexDirection: "column",
-      filter: isLight ? "invert(1)" : "none",
       gap: 40,
     }}
   >
@@ -68,7 +67,7 @@ const Container = ({
             width: 110,
             height: 110,
             borderRadius: 20,
-            background: "hsl(0, 0%, 20%)",
+            background: isLight ? "hsl(0, 0%, 83%)" : "hsl(0, 0%, 20%)",
           }}
         >
           <Emoji size={64} emoji={collection.emoji} />
@@ -134,7 +133,7 @@ function Preview({
                 padding: 20,
                 flex: 1,
                 fontSize: 40,
-                background: "hsl(0, 0%, 20%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 borderRadius: 20,
                 justifyContent: "center",
               }}
@@ -163,7 +162,7 @@ function Preview({
                 paddingTop: "20px",
                 paddingBottom: "20px",
                 flex: 1,
-                background: "hsl(0, 0%, 20%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 borderRadius: 20,
                 whiteSpace: "nowrap",
                 display: "flex",
@@ -207,7 +206,7 @@ function Preview({
                 gap: 10,
                 padding: 20,
                 flex: 1,
-                background: "hsl(0, 0%, 20%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 borderRadius: 20,
                 display: "flex",
                 alignItems: "center",
@@ -232,7 +231,9 @@ function Preview({
                   gap: 10,
                   padding: 20,
                   flex: 1,
-                  background: "hsl(0, 0%, 18.5%)",
+                  background: isLight
+                    ? "hsl(0, 0%, 86.5%)"
+                    : "hsl(0, 0%, 18.5%)",
                   borderRadius: 20,
                 }}
               />
@@ -252,8 +253,7 @@ function Preview({
               <div
                 key={label}
                 style={{
-                  background: "hsl(0, 0%, 20%)",
-                  color: "hsl(0, 0%, 50%)",
+                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                   fontWeight: 900,
                   flex: 1,
                   borderRadius: 20,
@@ -284,7 +284,7 @@ function Preview({
             <div
               key={label.name}
               style={{
-                background: "hsl(0, 0%, 20%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 borderRadius: 20,
                 padding: 10,
                 paddingRight: 20,
@@ -316,7 +316,9 @@ function Preview({
               <div
                 key={i}
                 style={{
-                  background: "hsl(0, 0%, 18.5%)",
+                  background: isLight
+                    ? "hsl(0, 0%, 86.5%)"
+                    : "hsl(0, 0%, 18.5%)",
                   borderRadius: 20,
                   padding: 10,
                   width: "555px",
@@ -349,7 +351,7 @@ function Preview({
                 paddingTop: 30,
                 fontWeight: 200,
                 flex: 1,
-                background: "hsl(0, 0%, 20%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 borderRadius: 20,
                 whiteSpace: "nowrap",
                 flexDirection: "column",
@@ -364,7 +366,7 @@ function Preview({
                   height: 90,
                   borderRadius: 99,
                   fontSize: 40,
-                  background: "hsl(0, 0%, 25%)",
+                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -401,8 +403,7 @@ function Preview({
               style={{
                 justifyContent: "flex-start",
                 paddingLeft: 20,
-                background: "hsl(0, 0%, 20%)",
-                color: "hsl(0, 0%, 50%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 fontWeight: 900,
                 flex: 1,
                 borderRadius: 20,
@@ -419,8 +420,7 @@ function Preview({
             <div
               style={{
                 justifyContent: "center",
-                background: "hsl(0, 0%, 20%)",
-                color: "hsl(0, 0%, 50%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 fontWeight: 900,
                 flex: 1,
                 borderRadius: 20,
@@ -440,8 +440,9 @@ function Preview({
                 key={i}
                 style={{
                   justifyContent: "center",
-                  background: "hsl(0, 0%, 18.5%)",
-                  color: "hsl(0, 0%, 50%)",
+                  background: isLight
+                    ? "hsl(0, 0%, 86.5%)"
+                    : "hsl(0, 0%, 18.5%)",
                   fontWeight: 900,
                   flex: 1,
                   borderRadius: 20,
@@ -511,7 +512,7 @@ function Preview({
               </span>
               <div
                 style={{
-                  background: "hsl(0, 0%, 20%)",
+                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -519,7 +520,7 @@ function Preview({
               />
               <div
                 style={{
-                  background: "hsl(0, 0%, 20%)",
+                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -545,7 +546,7 @@ function Preview({
               </span>
               <div
                 style={{
-                  background: "hsl(0, 0%, 20%)",
+                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -553,7 +554,7 @@ function Preview({
               />
               <div
                 style={{
-                  background: "hsl(0, 0%, 20%)",
+                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -583,7 +584,7 @@ function Preview({
                 gap: 10,
                 width: 1200 / 7 - 20,
                 padding: 10,
-                background: "hsl(0, 0%, 23%)",
+                background: isLight ? "hsl(0, 0%, 83%)" : "hsl(0, 0%, 23%)",
                 borderRadius: 4,
                 justifyContent: "center",
               }}
@@ -600,7 +601,7 @@ function Preview({
                 width: 1200 / 7 - 20,
                 height: hideHeader ? 92 : 60,
                 padding: 10,
-                background: "hsl(0, 0%, 20%)",
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
                 borderRadius: 4,
                 justifyContent: "center",
               }}
@@ -611,28 +612,27 @@ function Preview({
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const query = req.nextUrl.searchParams;
-    if (!query.get("id")) throw new Error("id is required");
 
-    const id = query.get("id");
-
-    const data = await fetch("https://api.dysperse.com/dysverse?id=" + id).then(
-      (res) => res.json()
-    );
-
-    const jostBlack = await fetch(
-      "https://assets.dysperse.com/jost/Jost-Black.ttf"
-    ).then((res) => res.arrayBuffer());
-
-    const jostRegular = await fetch(
-      "https://assets.dysperse.com/jost/Jost-Regular.ttf"
-    ).then((res) => res.arrayBuffer());
-
-    const jostSemiBold = await fetch(
-      "https://assets.dysperse.com/jost/Jost-SemiBold.ttf"
-    ).then((res) => res.arrayBuffer());
+    const [data, jostBlack, jostRegular, jostSemiBold] = await Promise.all([
+      fetch("https://api.dysperse.com/dysverse?id=" + params.id).then((res) =>
+        res.json()
+      ),
+      fetch("https://assets.dysperse.com/jost/Jost-Black.ttf").then((res) =>
+        res.arrayBuffer()
+      ),
+      fetch("https://assets.dysperse.com/jost/Jost-Regular.ttf").then((res) =>
+        res.arrayBuffer()
+      ),
+      fetch("https://assets.dysperse.com/jost/Jost-SemiBold.ttf").then((res) =>
+        res.arrayBuffer()
+      ),
+    ]);
 
     const template = data[0];
 
