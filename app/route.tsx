@@ -27,14 +27,18 @@ const Container = ({
   children,
   style,
   collection,
+  hideHeader,
+  isLight,
 }: {
   collection: any;
   style: any;
   children: any;
+  hideHeader?: boolean;
+  isLight?: boolean;
 }) => (
   <div
     style={{
-      padding: 20,
+      padding: 40,
       borderRadius: 20,
       color: "hsl(0, 0%, 50%)",
       fontFamily: "'Jost'",
@@ -43,34 +47,51 @@ const Container = ({
       height: "100%",
       display: "flex",
       flexDirection: "column",
-      gap: 20,
+      filter: isLight ? "invert(1)" : "none",
+      gap: 40,
     }}
   >
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 20,
-        paddingLeft: 10,
-      }}
-    >
-      <Emoji size={40} emoji={collection.emoji} />
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <span style={{ fontSize: 27, fontWeight: 900 }}>{collection.name}</span>
-        <span style={{ fontSize: 16, fontWeight: 200 }}>
-          by{" "}
-          {collection.keepAuthorAnonymous
-            ? "Anonymous"
-            : collection.createdBy.profile?.name || "Anonymous"}
-        </span>
+    {!hideHeader && (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 30,
+          paddingLeft: 10,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 110,
+            height: 110,
+            borderRadius: 20,
+            background: "hsl(0, 0%, 20%)",
+          }}
+        >
+          <Emoji size={64} emoji={collection.emoji} />
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <span style={{ fontSize: 50, fontWeight: 900 }}>
+            {collection.name}
+          </span>
+          <span style={{ fontSize: 40, fontWeight: 500, marginTop: -7 }}>
+            by{" "}
+            {collection.keepAuthorAnonymous
+              ? "Anonymous"
+              : collection.createdBy.profile?.name || "Anonymous"}
+          </span>
+        </div>
+        <img
+          src="https://assets.dysperse.com/monochrome-small.png"
+          width={80}
+          height={80}
+          style={{ marginLeft: "auto", opacity: 0.5 }}
+        />
       </div>
-      <img
-        src="https://assets.dysperse.com/monochrome-small.png"
-        width={64}
-        height={64}
-        style={{ marginLeft: "auto", opacity: 0.5 }}
-      />
-    </div>
+    )}
     <div
       style={{
         display: "flex",
@@ -85,13 +106,25 @@ const Container = ({
   </div>
 );
 
-function Preview({ large, showToolbar, view, collection }: any) {
+function Preview({
+  large,
+  showToolbar,
+  view,
+  collection,
+  hideHeader,
+  isLight,
+}: any) {
   const labels = collection.labels;
 
   switch (view) {
     case "planner":
       return (
-        <Container collection={collection} style={{ gap: 20 }}>
+        <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
+          collection={collection}
+          style={{ gap: 20 }}
+        >
           {new Array(7).fill(0).map((_, i) => (
             <div
               key={i}
@@ -115,7 +148,12 @@ function Preview({ large, showToolbar, view, collection }: any) {
       const LABEL_LENGTH = 6;
 
       return (
-        <Container collection={collection} style={{ gap: 10 }}>
+        <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
+          collection={collection}
+          style={{ gap: 10 }}
+        >
           {labels.slice(0, LABEL_LENGTH).map((label: any) => (
             <div
               key={label.name}
@@ -132,7 +170,7 @@ function Preview({ large, showToolbar, view, collection }: any) {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                height: 505,
+                height: hideHeader ? 550 : 385,
               }}
             >
               <Emoji size={64} emoji={label.emoji} />
@@ -140,7 +178,7 @@ function Preview({ large, showToolbar, view, collection }: any) {
                 style={{
                   width: 40,
                   paddingBottom: 15,
-                  height: 505 - 20 - 64 - 20 - 30,
+                  height: hideHeader ? 350 : 220,
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -154,7 +192,7 @@ function Preview({ large, showToolbar, view, collection }: any) {
                     textOverflow: "ellipsis",
                     fontSize: 30,
                     height: 46,
-                    width: 505 - 20 - 64 - 20 - 20 - 30,
+                    width: hideHeader ? 350 : 220,
                     transform: "rotate(90deg)",
                   }}
                 >
@@ -194,7 +232,7 @@ function Preview({ large, showToolbar, view, collection }: any) {
                   gap: 10,
                   padding: 20,
                   flex: 1,
-                  background: "hsl(0, 0%, 20%)",
+                  background: "hsl(0, 0%, 18.5%)",
                   borderRadius: 20,
                 }}
               />
@@ -204,6 +242,8 @@ function Preview({ large, showToolbar, view, collection }: any) {
     case "stream":
       return (
         <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
           collection={collection}
           style={{ flexDirection: "column", gap: 20 }}
         >
@@ -232,6 +272,8 @@ function Preview({ large, showToolbar, view, collection }: any) {
       const t = labels.splice(0, 4);
       return (
         <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
           collection={collection}
           style={{
             gap: 10,
@@ -247,8 +289,8 @@ function Preview({ large, showToolbar, view, collection }: any) {
                 padding: 10,
                 paddingRight: 20,
                 paddingLeft: 20,
-                width: "575px",
-                height: "250px",
+                width: "555px",
+                height: hideHeader ? "268px" : "190px",
                 display: "flex",
                 alignItems: "center",
                 gap: 20,
@@ -274,9 +316,11 @@ function Preview({ large, showToolbar, view, collection }: any) {
               <div
                 key={i}
                 style={{
-                  background: "hsl(0, 0%, 20%)",
-                  borderRadius: 4,
+                  background: "hsl(0, 0%, 18.5%)",
+                  borderRadius: 20,
                   padding: 10,
+                  width: "555px",
+                  height: hideHeader ? "268px" : "190px",
                 }}
               />
             ))}
@@ -284,7 +328,12 @@ function Preview({ large, showToolbar, view, collection }: any) {
       );
     case "workload":
       return (
-        <Container collection={collection} style={{ gap: 20 }}>
+        <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
+          collection={collection}
+          style={{ gap: 20 }}
+        >
           {[
             [2, "Minimum Effort"],
             [4, "Little Effort"],
@@ -337,12 +386,16 @@ function Preview({ large, showToolbar, view, collection }: any) {
         </Container>
       );
     case "list":
+      const LABELS_LENGTH = 4;
+
       return (
         <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
           collection={collection}
           style={{ flexDirection: "column", gap: 10 }}
         >
-          {labels.map((label: any) => (
+          {labels.slice(0, LABELS_LENGTH).map((label: any) => (
             <div
               key={label.name}
               style={{
@@ -362,11 +415,49 @@ function Preview({ large, showToolbar, view, collection }: any) {
               <span style={{ fontSize: 25 }}>{label.name}</span>
             </div>
           ))}
+          {labels.length > LABELS_LENGTH && (
+            <div
+              style={{
+                justifyContent: "center",
+                background: "hsl(0, 0%, 20%)",
+                color: "hsl(0, 0%, 50%)",
+                fontWeight: 900,
+                flex: 1,
+                borderRadius: 20,
+                display: "flex",
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <span style={{ fontSize: 25 }}>
+                +{labels.length - LABELS_LENGTH}
+              </span>
+            </div>
+          )}
+          {labels.length < LABELS_LENGTH &&
+            new Array(LABELS_LENGTH - labels.length).fill(0).map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  justifyContent: "center",
+                  background: "hsl(0, 0%, 18.5%)",
+                  color: "hsl(0, 0%, 50%)",
+                  fontWeight: 900,
+                  flex: 1,
+                  borderRadius: 20,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 20,
+                }}
+              />
+            ))}
         </Container>
       );
     case "matrix":
       return (
         <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
           collection={collection}
           style={{
             textAlign: "center",
@@ -475,6 +566,8 @@ function Preview({ large, showToolbar, view, collection }: any) {
     case "calendar":
       return (
         <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
           collection={collection}
           style={{
             display: "flex",
@@ -488,7 +581,7 @@ function Preview({ large, showToolbar, view, collection }: any) {
               style={{
                 display: "flex",
                 gap: 10,
-                width: 157,
+                width: 1200 / 7 - 20,
                 padding: 10,
                 background: "hsl(0, 0%, 23%)",
                 borderRadius: 4,
@@ -504,8 +597,8 @@ function Preview({ large, showToolbar, view, collection }: any) {
               style={{
                 display: "flex",
                 gap: 10,
-                width: 157,
-                height: 82.5,
+                width: 1200 / 7 - 20,
+                height: hideHeader ? 92 : 60,
                 padding: 10,
                 background: "hsl(0, 0%, 20%)",
                 borderRadius: 4,
@@ -537,14 +630,32 @@ export async function GET(req: NextRequest) {
       "https://assets.dysperse.com/jost/Jost-Regular.ttf"
     ).then((res) => res.arrayBuffer());
 
+    const jostSemiBold = await fetch(
+      "https://assets.dysperse.com/jost/Jost-SemiBold.ttf"
+    ).then((res) => res.arrayBuffer());
+
     const template = data[0];
 
+    // Types: planner, kanban, stream, grid, workload, list, matrix, calendar
     return new ImageResponse(
-      <Preview view={template.defaultView} collection={template} />,
+      (
+        <Preview
+          view={template.defaultView || "planner"}
+          hideHeader={query.get("hideHeader") === "true"}
+          isLight={query.get("isLight") === "true"}
+          collection={template}
+        />
+      ),
       {
         fonts: [
           {
             data: jostRegular,
+            name: "Jost",
+            style: "normal",
+            weight: 200,
+          },
+          {
+            data: jostSemiBold,
             name: "Jost",
             style: "normal",
             weight: 500,
