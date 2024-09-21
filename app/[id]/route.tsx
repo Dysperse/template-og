@@ -116,6 +116,34 @@ function Preview({
   const labels = collection.labels;
 
   switch (view) {
+    case "pano":
+    case "kanban":
+      return (
+        <Container
+          isLight={isLight}
+          hideHeader={hideHeader}
+          collection={collection}
+          style={{ gap: 20 }}
+        >
+          {["Today", "Week", "Month", "Year"].map((i) => (
+            <div
+              key={i}
+              style={{
+                display: "flex",
+                gap: 10,
+                padding: 20,
+                paddingLeft: 30,
+                flex: 1,
+                fontSize: 40,
+                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                borderRadius: 20,
+              }}
+            >
+              {i}
+            </div>
+          ))}
+        </Container>
+      );
     case "planner":
       return (
         <Container
