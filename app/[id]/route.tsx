@@ -117,7 +117,6 @@ function Preview({
 
   switch (view) {
     case "pano":
-    case "kanban":
       return (
         <Container
           isLight={isLight}
