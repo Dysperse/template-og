@@ -3,6 +3,8 @@ import dayjs from "dayjs";
 import { NextRequest } from "next/server";
 import { fileURLToPath } from "url";
 
+export const revalidate = 60;
+
 function Emoji({
   size = 24,
   emoji,
