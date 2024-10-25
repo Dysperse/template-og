@@ -667,7 +667,7 @@ export async function GET(
     return new ImageResponse(
       (
         <Preview
-          view={template.defaultView || "planner"}
+          view={template.defaultView || "kanban"}
           hideHeader={query.get("hideHeader") === "true"}
           isLight={query.get("isLight") === "true"}
           collection={template}
