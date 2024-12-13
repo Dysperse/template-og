@@ -31,20 +31,22 @@ const Container = ({
   collection,
   hideHeader,
   isLight,
+  baseColor,
 }: {
   collection: any;
   style: any;
   children: any;
   hideHeader?: boolean;
   isLight?: boolean;
+  baseColor: string;
 }) => (
   <div
     style={{
       padding: 40,
       borderRadius: 30,
-      color: isLight ? "hsl(0, 0%, 40%)" : "hsl(0, 0%, 50%)",
+      color: isLight ? `hsl(${baseColor}, 40%)` : `hsl(${baseColor}, 50%)`,
       fontFamily: "'Jost'",
-      background: isLight ? "hsl(0, 0%, 90%)" : "hsl(0, 0%, 17%)",
+      background: isLight ? `hsl(${baseColor}, 90%)` : `hsl(${baseColor}, 17%)`,
       width: "100%",
       height: "100%",
       display: "flex",
@@ -69,7 +71,9 @@ const Container = ({
             width: 110,
             height: 110,
             borderRadius: 20,
-            background: isLight ? "hsl(0, 0%, 83%)" : "hsl(0, 0%, 20%)",
+            background: isLight
+              ? `hsl(${baseColor}, 83%)`
+              : `hsl(${baseColor}, 20%)`,
           }}
         >
           <Emoji size={64} emoji={collection.emoji} />
@@ -116,13 +120,23 @@ function Preview({
   collection,
   hideHeader,
   isLight,
-}: any) {
+  baseColor,
+}: {
+  large: any;
+  showToolbar: any;
+  view: any;
+  collection: any;
+  hideHeader: any;
+  isLight: any;
+  baseColor: any;
+}) {
   const labels = collection?.labels || [];
 
   switch (view) {
     case "pano":
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -138,7 +152,9 @@ function Preview({
                 paddingLeft: 30,
                 flex: 1,
                 fontSize: 40,
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 borderRadius: 20,
               }}
             >
@@ -150,6 +166,7 @@ function Preview({
     case "planner":
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -164,7 +181,9 @@ function Preview({
                 padding: 20,
                 flex: 1,
                 fontSize: 40,
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 borderRadius: 20,
                 justifyContent: "center",
               }}
@@ -179,6 +198,7 @@ function Preview({
 
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -193,7 +213,9 @@ function Preview({
                 paddingTop: "20px",
                 paddingBottom: "20px",
                 flex: 1,
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 borderRadius: 20,
                 whiteSpace: "nowrap",
                 display: "flex",
@@ -237,7 +259,9 @@ function Preview({
                 gap: 10,
                 padding: 20,
                 flex: 1,
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 borderRadius: 20,
                 display: "flex",
                 alignItems: "center",
@@ -262,9 +286,10 @@ function Preview({
                   gap: 10,
                   padding: 20,
                   flex: 1,
+                  marginBottom: 14,
                   background: isLight
-                    ? "hsl(0, 0%, 86.5%)"
-                    : "hsl(0, 0%, 18.5%)",
+                    ? `hsl(${baseColor}, 86.5%)`
+                    : `hsl(${baseColor}, 18.5%)`,
                   borderRadius: 20,
                 }}
               />
@@ -274,6 +299,7 @@ function Preview({
     case "stream":
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -284,7 +310,9 @@ function Preview({
               <div
                 key={label}
                 style={{
-                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                  background: isLight
+                    ? `hsl(${baseColor}, 85%)`
+                    : `hsl(${baseColor}, 20%)`,
                   fontWeight: 900,
                   flex: 1,
                   borderRadius: 20,
@@ -303,6 +331,7 @@ function Preview({
       const t = labels.splice(0, 4);
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -315,7 +344,9 @@ function Preview({
             <div
               key={label.name}
               style={{
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 borderRadius: 20,
                 padding: 10,
                 paddingRight: 20,
@@ -348,8 +379,8 @@ function Preview({
                 key={i}
                 style={{
                   background: isLight
-                    ? "hsl(0, 0%, 86.5%)"
-                    : "hsl(0, 0%, 18.5%)",
+                    ? `hsl(${baseColor}, 86.5%)`
+                    : `hsl(${baseColor}, 18.5%)`,
                   borderRadius: 20,
                   padding: 10,
                   width: "555px",
@@ -362,6 +393,7 @@ function Preview({
     case "workload":
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -382,7 +414,9 @@ function Preview({
                 paddingTop: 30,
                 fontWeight: 200,
                 flex: 1,
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 borderRadius: 20,
                 whiteSpace: "nowrap",
                 flexDirection: "column",
@@ -397,7 +431,9 @@ function Preview({
                   height: 90,
                   borderRadius: 99,
                   fontSize: 40,
-                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                  background: isLight
+                    ? `hsl(${baseColor}, 85%)`
+                    : `hsl(${baseColor}, 20%)`,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -423,6 +459,7 @@ function Preview({
 
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -434,7 +471,9 @@ function Preview({
               style={{
                 justifyContent: "flex-start",
                 paddingLeft: 20,
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 fontWeight: 900,
                 flex: 1,
                 borderRadius: 20,
@@ -451,7 +490,9 @@ function Preview({
             <div
               style={{
                 justifyContent: "center",
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 fontWeight: 900,
                 flex: 1,
                 borderRadius: 20,
@@ -472,8 +513,8 @@ function Preview({
                 style={{
                   justifyContent: "center",
                   background: isLight
-                    ? "hsl(0, 0%, 86.5%)"
-                    : "hsl(0, 0%, 18.5%)",
+                    ? `hsl(${baseColor}, 86.5%)`
+                    : `hsl(${baseColor}, 18.5%)`,
                   fontWeight: 900,
                   flex: 1,
                   borderRadius: 20,
@@ -488,6 +529,7 @@ function Preview({
     case "matrix":
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -543,7 +585,9 @@ function Preview({
               </span>
               <div
                 style={{
-                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                  background: isLight
+                    ? `hsl(${baseColor}, 85%)`
+                    : `hsl(${baseColor}, 20%)`,
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -551,7 +595,9 @@ function Preview({
               />
               <div
                 style={{
-                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                  background: isLight
+                    ? `hsl(${baseColor}, 85%)`
+                    : `hsl(${baseColor}, 20%)`,
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -577,7 +623,9 @@ function Preview({
               </span>
               <div
                 style={{
-                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                  background: isLight
+                    ? `hsl(${baseColor}, 85%)`
+                    : `hsl(${baseColor}, 20%)`,
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -585,7 +633,9 @@ function Preview({
               />
               <div
                 style={{
-                  background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                  background: isLight
+                    ? `hsl(${baseColor}, 85%)`
+                    : `hsl(${baseColor}, 20%)`,
                   borderRadius: 20,
                   padding: 10,
                   flex: 1,
@@ -598,6 +648,7 @@ function Preview({
     case "calendar":
       return (
         <Container
+          baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
           collection={collection}
@@ -615,7 +666,9 @@ function Preview({
                 gap: 10,
                 width: 1200 / 7 - 20,
                 padding: 10,
-                background: isLight ? "hsl(0, 0%, 83%)" : "hsl(0, 0%, 23%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 83%)`
+                  : `hsl(${baseColor}, 23%)`,
                 borderRadius: 4,
                 justifyContent: "center",
               }}
@@ -632,7 +685,9 @@ function Preview({
                 width: 1200 / 7 - 20,
                 height: hideHeader ? 92 : 60,
                 padding: 10,
-                background: isLight ? "hsl(0, 0%, 85%)" : "hsl(0, 0%, 20%)",
+                background: isLight
+                  ? `hsl(${baseColor}, 85%)`
+                  : `hsl(${baseColor}, 20%)`,
                 borderRadius: 4,
                 justifyContent: "center",
               }}
@@ -666,13 +721,16 @@ export async function GET(
     ]);
     console.log("THIS IS IT", query.get("json"));
     const template = query.get("json")
-      ? JSON.parse(query.get("json"))
+      ? JSON.parse(query.get("json") as any)
       : data[0];
 
     // Types: planner, kanban, stream, grid, workload, list, matrix, calendar
     return new ImageResponse(
       (
         <Preview
+          large={query.get("large")}
+          showToolbar={query.get("showToolbar")}
+          baseColor={template.baseColor || "20, 50%"}
           view={template.defaultView || "kanban"}
           hideHeader={query.get("hideHeader") === "true"}
           isLight={query.get("isLight") === "true"}
