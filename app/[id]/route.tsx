@@ -32,6 +32,7 @@ const Container = ({
   hideHeader,
   isLight,
   baseColor,
+  hideLogo,
 }: {
   collection: any;
   style: any;
@@ -39,6 +40,7 @@ const Container = ({
   hideHeader?: boolean;
   isLight?: boolean;
   baseColor: string;
+  hideLogo: string;
 }) => (
   <div
     style={{
@@ -91,12 +93,14 @@ const Container = ({
             </span>
           )}
         </div>
-        <img
-          src="https://assets.dysperse.com/monochrome-small.png"
-          width={80}
-          height={80}
-          style={{ marginLeft: "auto", opacity: 0.5 }}
-        />
+        {!hideLogo && (
+          <img
+            src="https://assets.dysperse.com/monochrome-small.png"
+            width={80}
+            height={80}
+            style={{ marginLeft: "auto", opacity: 0.5 }}
+          />
+        )}
       </div>
     )}
     <div
@@ -121,6 +125,7 @@ function Preview({
   hideHeader,
   isLight,
   baseColor,
+  hideLogo,
 }: {
   large: any;
   showToolbar: any;
@@ -129,6 +134,7 @@ function Preview({
   hideHeader: any;
   isLight: any;
   baseColor: any;
+  hideLogo: any;
 }) {
   const labels = collection?.labels || [];
 
@@ -136,6 +142,7 @@ function Preview({
     case "pano":
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -166,6 +173,7 @@ function Preview({
     case "planner":
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -198,6 +206,7 @@ function Preview({
 
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -299,6 +308,7 @@ function Preview({
     case "stream":
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -331,6 +341,7 @@ function Preview({
       const t = labels.splice(0, 4);
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -393,6 +404,7 @@ function Preview({
     case "workload":
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -459,6 +471,7 @@ function Preview({
 
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -529,6 +542,7 @@ function Preview({
     case "matrix":
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -648,6 +662,7 @@ function Preview({
     case "calendar":
       return (
         <Container
+          hideLogo={hideLogo}
           baseColor={baseColor}
           isLight={isLight}
           hideHeader={hideHeader}
@@ -734,6 +749,7 @@ export async function GET(
           view={template.defaultView || "kanban"}
           hideHeader={query.get("hideHeader") === "true"}
           isLight={query.get("isLight") === "true"}
+          hideLogo={query.get("hideLogo") === "true"}
           collection={template}
         />
       ),
