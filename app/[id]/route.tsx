@@ -745,7 +745,7 @@ export async function GET(
         <Preview
           large={query.get("large")}
           showToolbar={query.get("showToolbar")}
-          baseColor={template.baseColor || "20, 50%"}
+          baseColor={template.baseColor || "0, 0%"}
           view={template.defaultView || "kanban"}
           hideHeader={query.get("hideHeader") === "true"}
           isLight={query.get("isLight") === "true"}
