@@ -78,12 +78,14 @@ const Container = ({
           <span style={{ fontSize: 50, fontWeight: 900 }}>
             {collection.name}
           </span>
-          <span style={{ fontSize: 40, fontWeight: 500, marginTop: -7 }}>
-            by{" "}
-            {collection.keepAuthorAnonymous
-              ? "Anonymous"
-              : collection.createdBy.profile?.name || "Anonymous"}
-          </span>
+          {collection.createdBy?.profile && (
+            <span style={{ fontSize: 40, fontWeight: 500, marginTop: -7 }}>
+              by{" "}
+              {collection.keepAuthorAnonymous
+                ? "Anonymous"
+                : collection.createdBy?.profile?.name || "Anonymous"}
+            </span>
+          )}
         </div>
         <img
           src="https://assets.dysperse.com/monochrome-small.png"
@@ -115,7 +117,7 @@ function Preview({
   hideHeader,
   isLight,
 }: any) {
-  const labels = collection.labels;
+  const labels = collection?.labels || [];
 
   switch (view) {
     case "pano":
@@ -643,7 +645,7 @@ function Preview({
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string; data?: any } }
 ) {
   try {
     const query = req.nextUrl.searchParams;
@@ -662,8 +664,10 @@ export async function GET(
         res.arrayBuffer()
       ),
     ]);
-
-    const template = data[0];
+    console.log("THIS IS IT", query.get("json"));
+    const template = query.get("json")
+      ? JSON.parse(query.get("json"))
+      : data[0];
 
     // Types: planner, kanban, stream, grid, workload, list, matrix, calendar
     return new ImageResponse(
