@@ -751,14 +751,29 @@ function Preview({
               display: "flex",
               gap: 10,
               flex: 3,
-              padding: 20,
               background: isLight
                 ? `hsl(${baseColor}, 85%)`
                 : `hsl(${baseColor}, 20%)`,
               borderRadius: 20,
+              overflow: "hidden",
               justifyContent: "center",
             }}
-          />
+          >
+            <img
+              src={
+                process.env.NODE_ENV === "production"
+                  ? "https://og.dysperse.com/map.png"
+                  : "http://localhost:3000/map.png"
+              }
+              width={500}
+              style={{
+                width: "100%",
+                objectFit: "cover",
+                // objectPosition: "1cm 2cm",
+                height: "100%",
+              }}
+            />
+          </div>
         </Container>
       );
   }
