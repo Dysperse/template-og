@@ -710,6 +710,57 @@ function Preview({
           ))}
         </Container>
       );
+
+    case "map":
+      return (
+        <Container
+          hideLogo={hideLogo}
+          baseColor={baseColor}
+          isLight={isLight}
+          hideHeader={hideHeader}
+          collection={collection}
+          style={{ gap: 20 }}
+        >
+          <div
+            style={{
+              display: "flex",
+              gap: 10,
+              flex: 1,
+              flexDirection: "column",
+            }}
+          >
+            {[...new Array(7)].map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "flex",
+                  gap: 10,
+                  flex: 2,
+                  padding: 20,
+                  background: isLight
+                    ? `hsl(${baseColor}, 85%)`
+                    : `hsl(${baseColor}, 20%)`,
+                  borderRadius: 20,
+                  justifyContent: "center",
+                }}
+              />
+            ))}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: 10,
+              flex: 3,
+              padding: 20,
+              background: isLight
+                ? `hsl(${baseColor}, 85%)`
+                : `hsl(${baseColor}, 20%)`,
+              borderRadius: 20,
+              justifyContent: "center",
+            }}
+          />
+        </Container>
+      );
   }
 }
 
